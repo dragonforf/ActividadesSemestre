@@ -15,7 +15,7 @@ namespace ActividadesSemestre.ViewModels{
                     return;
 
                 var actividadViewModel = new ActividadViewModel{
-                    CorteId = Id,
+                    CorteSeleccionado = corteSeleccionado,
                     Id = ActividadSeleccionada.Id,
                     Titulo = ActividadSeleccionada.Titulo,
                     Observaciones = ActividadSeleccionada.Observaciones,
@@ -32,7 +32,7 @@ namespace ActividadesSemestre.ViewModels{
 
             InsertarNuevaActividad = new Command(async () => {
                 var actividadViewModel = new ActividadViewModel{
-                    CorteId = Id,
+                    CorteSeleccionado = CorteSeleccionado,
                     EsNueva = true,
                     FechaEntrega = DateTime.Today
                 };
@@ -41,15 +41,6 @@ namespace ActividadesSemestre.ViewModels{
 
                 ActividadSeleccionada = null;
             });
-        }
-
-        int id;
-        public int Id{
-            get => id;
-            set{
-                id = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Id)));
-            }
         }
 
         string nombre;
@@ -94,6 +85,15 @@ namespace ActividadesSemestre.ViewModels{
             set{
                 actividadSeleccionada = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ActividadSeleccionada)));
+            }
+        }
+
+        Corte corteSeleccionado;
+        public Corte CorteSeleccionado{
+            get => corteSeleccionado;
+            set{
+                corteSeleccionado = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CorteSeleccionado)));
             }
         }
 

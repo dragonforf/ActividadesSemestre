@@ -40,13 +40,23 @@ namespace ActividadesSemestre.Views
                 });
             }
 
-            await Application.Current.MainPage.Navigation.PushAsync(new CortePage(new CorteViewModel{
+            Corte corte = new Corte{
                 Id = (int)corteSeleccionado["Id"],
                 Nombre = corteSeleccionado["Nombre"].ToString(),
                 Porcentaje = (int)corteSeleccionado["Porcentaje"],
-                FechaInicio = ((DateTime)corteSeleccionado["FechaInicio"]).ToString("D", new System.Globalization.CultureInfo("es-CO")),
-                FechaFin = ((DateTime)corteSeleccionado["FechaFin"]).ToString("D", new System.Globalization.CultureInfo("es-CO")),
-                Actividades = actividadesCorte
+                FechaInicio = (DateTime)corteSeleccionado["FechaInicio"],
+                FechaFin = (DateTime)corteSeleccionado["FechaFin"],
+                ActividadesCorte = actividadesCorte
+            };
+
+
+            await Application.Current.MainPage.Navigation.PushAsync(new CortePage(new CorteViewModel{
+                Nombre = corte.Nombre,
+                Porcentaje = corte.Porcentaje,
+                FechaInicio = corte.FechaInicio.ToString("D", new System.Globalization.CultureInfo("es-CO")),
+                FechaFin = corte.FechaFin.ToString("D", new System.Globalization.CultureInfo("es-CO")),
+                Actividades = corte.ActividadesCorte,
+                CorteSeleccionado = corte
             }));
         }
 

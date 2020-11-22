@@ -40,18 +40,17 @@
             </Label>
 
             <CollectionView Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        Grid.Row="3"
-                        ItemsSource="{Binding Actividades}"
-                        SelectionMode="Single"
-                        SelectedItem="{Binding ActividadSeleccionada}"
-                        SelectionChangedCommand="{Binding AbrirDetalleActividad}">
-
+                            Grid.ColumnSpan="2"
+                            Grid.Row="3"
+                            ItemsSource="{Binding Actividades}"
+                            SelectionMode="Single"
+                            SelectedItem="{Binding ActividadSeleccionada}"
+                            SelectionChangedCommand="{Binding AbrirDetalleActividad}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="10,10">
-                            <Frame>
-                                <Label Text="{Binding Titulo}" VerticalTextAlignment="Center" />
+                            <Frame BackgroundColor="DarkGray">
+                                <Label TextColor="White" Text="{Binding Titulo}" VerticalTextAlignment="Center" />
                             </Frame>
                         </StackLayout>
                     </DataTemplate>

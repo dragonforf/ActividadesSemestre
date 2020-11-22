@@ -1,5 +1,9 @@
-﻿using System;
+﻿using ActividadesSemestre.Models;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using System;
 using System.ComponentModel;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace ActividadesSemestre.ViewModels
@@ -7,82 +11,71 @@ namespace ActividadesSemestre.ViewModels
     public class ActividadViewModel : INotifyPropertyChanged{
 
         public ActividadViewModel(){
+            var collection = App.ActividadesSemestreBD.GetCollection<BsonDocument>("Actividades");
 
             GuardarActividad = new Command(async () => {
-                //MongoClient dbClient = new MongoClient(App.ConnectionString);
-                //var database = dbClient.GetDatabase("ActividadesSemestre");
-                //var collection = database.GetCollection<BsonDocument>("Actividades");
+                if (EsNueva){
+                    int id = int.Parse((CorteSeleccionado.ActividadesCorte.Count + 1) + "" + CorteSeleccionado.Id);
 
-                ////var corte = App.Cortes.Where(x => x.Id == CorteId).FirstOrDefault();
-                //if (EsNueva){
-                //    int id = Int32.Parse((corte.ActividadesCorte.Count + 1) + "" + CorteId);
+                    var actividadCorte = new Actividad{
+                        Id = id,
+                        Titulo = Titulo,
+                        Observaciones = Observaciones,
+                        FechaEntrega = FechaEntrega,
+                        Nota = Nota,
+                        Latitud = Latitud,
+                        Longitud = Longitud
+                    };
 
-                //    var actividadCorte = new ActividadCorte
-                //    {
-                //        Id = id,
-                //        Titulo = Titulo,
-                //        Observaciones = Observaciones,
-                //        FechaEntrega = FechaEntrega,
-                //        Nota = Nota,
-                //        Latitud = Latitud,
-                //        Longitud = Longitud
-                //    };
+                    CorteSeleccionado.ActividadesCorte.Add(actividadCorte);
 
-                //    corte.ActividadesCorte.Add(actividadCorte);
+                    var document = new BsonDocument{
+                      {"Id", actividadCorte.Id},
+                      {"Titulo", actividadCorte.Titulo},
+                      {"Observaciones", actividadCorte.Observaciones},
+                      {"FechaEntrega", actividadCorte.FechaEntrega},
+                      {"Nota", actividadCorte.Nota},
+                      {"CorteId", CorteSeleccionado.Id },
+                      {"latitud", actividadCorte.Latitud },
+                      {"longitud", actividadCorte.Longitud }
+                    };
 
-                //    var document = new BsonDocument{
-                //      {"Id", actividadCorte.Id},
-                //      {"Titulo", actividadCorte.Titulo},
-                //      {"Observaciones", actividadCorte.Observaciones},
-                //      {"FechaEntrega", actividadCorte.FechaEntrega},
-                //      {"Nota", actividadCorte.Nota},
-                //      {"CorteId", CorteId },
-                //      {"latitud", actividadCorte.Latitud },
-                //      {"longitud", actividadCorte.Longitud }
-                //    };
+                    collection.InsertOne(document);
+                }
+                else{  //actualizar  
+                    var actividad = CorteSeleccionado.ActividadesCorte.Where(x => x.Id == Id).FirstOrDefault();
+                    actividad.Titulo = Titulo;
+                    actividad.Observaciones = Observaciones;
+                    actividad.FechaEntrega = FechaEntrega;
+                    actividad.Nota = Nota;
+                    actividad.Latitud = Latitud;
+                    actividad.Longitud = Longitud;
 
-                //    collection.InsertOne(document);
-                //}
-                //else
-                //{  //actualizar  
-                //    var actividad = corte.ActividadesCorte.Where(x => x.Id == Id).FirstOrDefault();
-                //    actividad.Titulo = Titulo;
-                //    actividad.Observaciones = Observaciones;
-                //    actividad.FechaEntrega = FechaEntrega;
-                //    actividad.Nota = Nota;
-                //    actividad.Latitud = Latitud;
-                //    actividad.Longitud = Longitud;
-
-                //    var filter = Builders<BsonDocument>.Filter.Eq("Id", Id);
-                //    var update = Builders<BsonDocument>.Update.Set("Titulo", Titulo);
-                //    collection.UpdateOne(filter, update);
-                //    update = Builders<BsonDocument>.Update.Set("Observaciones", Observaciones);
-                //    collection.UpdateOne(filter, update);
-                //    update = Builders<BsonDocument>.Update.Set("FechaEntrega", FechaEntrega);
-                //    collection.UpdateOne(filter, update);
-                //    update = Builders<BsonDocument>.Update.Set("Nota", Nota);
-                //    collection.UpdateOne(filter, update);
-                //    update = Builders<BsonDocument>.Update.Set("latitud", Latitud);
-                //    collection.UpdateOne(filter, update);
-                //    update = Builders<BsonDocument>.Update.Set("longitud", Longitud);
-                //    collection.UpdateOne(filter, update);
-                //}
-                //await Application.Current.MainPage.Navigation.PopAsync();
+                    var filter = Builders<BsonDocument>.Filter.Eq("Id", Id);
+                    var update = Builders<BsonDocument>.Update.Set("Titulo", Titulo);
+                    collection.UpdateOne(filter, update);
+                    update = Builders<BsonDocument>.Update.Set("Observaciones", Observaciones);
+                    collection.UpdateOne(filter, update);
+                    update = Builders<BsonDocument>.Update.Set("FechaEntrega", FechaEntrega);
+                    collection.UpdateOne(filter, update);
+                    update = Builders<BsonDocument>.Update.Set("Nota", Nota);
+                    collection.UpdateOne(filter, update);
+                    update = Builders<BsonDocument>.Update.Set("latitud", Latitud);
+                    collection.UpdateOne(filter, update);
+                    update = Builders<BsonDocument>.Update.Set("longitud", Longitud);
+                    collection.UpdateOne(filter, update);
+                }
+                await Application.Current.MainPage.Navigation.PopAsync();
             });
 
             EliminarActividad = new Command(async () => {
-                //MongoClient dbClient = new MongoClient(App.ConnectionString);
-                //var database = dbClient.GetDatabase("ActividadesSemestre");
-                //var collection = database.GetCollection<BsonDocument>("Actividades");
+                var actividad = CorteSeleccionado.ActividadesCorte.Where(x => x.Id == Id).FirstOrDefault();
+                CorteSeleccionado.ActividadesCorte.Remove(actividad);
 
-                //var corte = App.Cortes.Where(x => x.Id == CorteId).FirstOrDefault();
-                //var actividad = corte.ActividadesCorte.Where(x => x.Id == Id).FirstOrDefault();
-                //corte.ActividadesCorte.Remove(actividad);
+                var deleteFilter = Builders<BsonDocument>.Filter.Eq("Id", Id);
+                collection.DeleteOne(deleteFilter);
 
-                //var deleteFilter = Builders<BsonDocument>.Filter.Eq("Id", Id);
-                //collection.DeleteOne(deleteFilter);
-
-                //await Application.Current.MainPage.Navigation.PopAsync();
+                await Application.Current.MainPage.Navigation.PopAsync();
             });
 
             SeleccionarUbicacion = new Command(async () => {
@@ -108,7 +101,14 @@ namespace ActividadesSemestre.ViewModels
 
         public int cantidadMensajes { get; set; }
 
-        public int CorteId { get; set; }
+        Corte corteSeleccionado;
+        public Corte CorteSeleccionado { 
+            get => corteSeleccionado;
+            set{
+                corteSeleccionado = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CorteSeleccionado)));
+            }
+        }
 
         int id;
         public int Id{
