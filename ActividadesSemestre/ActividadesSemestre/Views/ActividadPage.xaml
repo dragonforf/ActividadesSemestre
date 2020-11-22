@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ActividadesSemestre.Views.ActividadPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Padding="30,10,30,0">
+                <Label Text="Titulo" />
+                <Entry Text="{Binding Titulo}" />
+            </StackLayout>
+
+            <StackLayout Padding="30,10,30,0">
+                <Label Text="Observaciones" />
+                <Entry Text="{Binding Observaciones}" />
+            </StackLayout>
+
+
+            <FlexLayout Padding="30,10,30,0">
+                <StackLayout Padding="30,10,30,0">
+                    <Label Text="Nota" />
+                    <Entry Text="{Binding Nota}" />
+                </StackLayout>
+                <StackLayout Padding="30,10,30,0">
+                    <Label Text="Fecha Entrega" />
+                    <DatePicker Date="{Binding FechaEntrega}" />
+                </StackLayout>
+            </FlexLayout>
+
+            <FlexLayout Padding="30,10,30,0">
+                <StackLayout>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Latitud: " FontAttributes="Bold"/>
+                                    <Span Text="{Binding Latitud}" />
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Longitud: " FontAttributes="Bold"/>
+                                    <Span Text="{Binding Longitud}" />
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+            </FlexLayout>
+
+            <Button Text="Guardar" Command="{Binding GuardarActividad}" />
+            <Button Text="Eliminar" Command="{Binding EliminarActividad}" />
+            <Button Text="Seleccionar ubicación" Command="{Binding SeleccionarUbicacion}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,26 +1,27 @@
-﻿using MongoDB.Bson;
+﻿using ActividadesSemestre.Views;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using Xamarin.Forms;
 
 namespace ActividadesSemestre
 {
-    public partial class MainPage : ContentPage
+    public partial class LoginPage : ContentPage
     {
-        public MainPage()
+        public LoginPage()
         {
             InitializeComponent();
             Mensaje.Text = "";
         }
 
-        public void IniciarSesion(object sender, EventArgs args){
+        async public void IniciarSesion(object sender, EventArgs args){
             if(Usuario.Text != null && Clave.Text != null){
-                var Usuarios = App.ActividadesSemestreBD.GetCollection<BsonDocument>("Usuarios");
+                var usuarios = App.ActividadesSemestreBD.GetCollection<BsonDocument>("Usuarios");
                 var filter = Builders<BsonDocument>.Filter.Eq("usuario", Usuario.Text) & Builders<BsonDocument>.Filter.Eq("clave", Clave.Text);
-                BsonDocument usuario = Usuarios.Find(filter).FirstOrDefault();
+                BsonDocument usuario = usuarios.Find(filter).FirstOrDefault();
                 if(usuario != null){ 
                     App.UsuarioAutenticadoId = (int) usuario["idUsuario"];
-                    Mensaje.Text = "Usuario autenticado correctamente.";
+                    await Navigation.PushAsync(new CortesPage());
                 }
                 else{
                     Mensaje.Text = "La autenticación falló.";
