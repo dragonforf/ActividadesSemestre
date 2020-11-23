@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ActividadesSemestre.Views.ForosPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="NuevoForo" Order="Secondary" Command="{Binding NuevoForo}" />
+        <ToolbarItem Text="Nuevo Foro" Order="Secondary" Command="{Binding NuevoForo}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <CollectionView Grid.Column="0"
