@@ -10,19 +10,19 @@
         <ToolbarItem Text="Cerrar sesión" Order="Secondary" Clicked="CerrarSesion" />
     </ContentPage.ToolbarItems>
     <StackLayout Orientation="Vertical" Padding="0,100,0,0" Spacing="10">
-        <Picker Title="Primer Corte"  BackgroundColor="Orange" TitleColor="black" SelectedIndexChanged="SeleccionarCorte" >
+        <Picker Title="Primer Corte" SelectedIndexChanged="SeleccionarCorte" >
             <Picker.Items>
                 <x:String>Ver primer corte</x:String>
             </Picker.Items>
         </Picker>
         <StackLayout Orientation="Vertical" Padding="0,80,0,0" Spacing="10">
-            <Picker Title="Segundo Corte"  BackgroundColor="Orange" TitleColor="black" SelectedIndexChanged="SeleccionarCorte">
+            <Picker Title="Segundo Corte" SelectedIndexChanged="SeleccionarCorte">
                 <Picker.Items>
                     <x:String>Ver segundo corte</x:String>
                 </Picker.Items>
             </Picker>
             <StackLayout Orientation="Vertical" Padding="0,80,0,0" Spacing="10">
-                <Picker Title="Ver tercer corte"  BackgroundColor="Orange" TitleColor="black" SelectedIndexChanged="SeleccionarCorte">
+                <Picker Title="Tercer corte" SelectedIndexChanged="SeleccionarCorte">
                     <Picker.Items>
                         <x:String>Ver tercer corte</x:String>
                     </Picker.Items>

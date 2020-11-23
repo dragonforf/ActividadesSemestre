@@ -5,6 +5,7 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 
 namespace ActividadesSemestre.ViewModels
 {
@@ -79,23 +80,23 @@ namespace ActividadesSemestre.ViewModels
             });
 
             SeleccionarUbicacion = new Command(async () => {
-                //Position position;
-                //try { position = new Position(double.Parse(Latitud), double.Parse(Longitud)); }
-                //catch (Exception) { position = new Position(4.6523053, -74.0802087); }
+                Position position;
+                try { position = new Position(double.Parse(Latitud), double.Parse(Longitud)); }
+                catch (Exception) { position = new Position(4.6523053, -74.0802087); }
 
-                //var map = new Map(MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(1)));
-                //map.MapClicked += async (sender, eventArgs) => {
-                //    var x = eventArgs.Position;
-                //    var latitud = x.Latitude.ToString();
-                //    var longitud = x.Longitude.ToString();
+                var map = new Map(MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(1)));
+                map.MapClicked += async (sender, eventArgs) => {
+                    var x = eventArgs.Position;
+                    var latitud = x.Latitude.ToString();
+                    var longitud = x.Longitude.ToString();
 
-                //    Latitud = latitud;
-                //    Longitud = longitud;
+                    Latitud = latitud;
+                    Longitud = longitud;
 
-                //    await Application.Current.MainPage.Navigation.PopAsync();
-                //};
+                    await Application.Current.MainPage.Navigation.PopAsync();
+                };
 
-                //await Application.Current.MainPage.Navigation.PushAsync(new ContentPage() { Content = map });
+                await Application.Current.MainPage.Navigation.PushAsync(new ContentPage() { Content = map });
             });
         }
 
