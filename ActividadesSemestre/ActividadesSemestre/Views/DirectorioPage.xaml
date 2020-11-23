@@ -15,8 +15,8 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="10,10">
-                            <Frame>
-                                <Label Text="{Binding NombreContacto}" VerticalTextAlignment="Center" />
+                            <Frame BackgroundColor="DarkGray">
+                                <Label TextColor="White" Text="{Binding NombreContacto}" VerticalTextAlignment="Center" />
                             </Frame>
                         </StackLayout>
                     </DataTemplate>
