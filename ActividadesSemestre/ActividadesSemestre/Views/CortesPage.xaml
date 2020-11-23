@@ -6,7 +6,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Imagen de perfil" Order="Secondary" Clicked="VerImagenPerfil" />
         <ToolbarItem Text="Foros" Order="Secondary" Clicked="VerForos" />
-        <!--<ToolbarItem Text="Directorio" Order="Secondary" Clicked="VerDirectorio" />-->
+        <ToolbarItem Text="Directorio" Order="Secondary" Clicked="VerDirectorio" />
         <ToolbarItem Text="Cerrar sesión" Order="Secondary" Clicked="CerrarSesion" />
     </ContentPage.ToolbarItems>
     <StackLayout Orientation="Vertical" Padding="0,100,0,0" Spacing="10">

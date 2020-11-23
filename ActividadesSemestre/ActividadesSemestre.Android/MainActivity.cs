@@ -20,6 +20,11 @@ namespace ActividadesSemestre.Droid
             Manifest.Permission.AccessFineLocation
         };
 
+        readonly string[] ContactPermissions = {
+            Manifest.Permission.ReadContacts,
+            Manifest.Permission.WriteContacts
+        };
+
         protected override void OnStart(){
             base.OnStart();
 
@@ -29,6 +34,13 @@ namespace ActividadesSemestre.Droid
                 }
                 else{
                     Toast.MakeText(this, "Permisos de ubicación ya han sido concedidos.", ToastLength.Short);
+                }
+
+                if (CheckSelfPermission(Manifest.Permission.ReadContacts) != Permission.Granted){
+                    RequestPermissions(ContactPermissions, 1);
+                }
+                else{
+                    Toast.MakeText(this, "Permisos de contactos ya han sido concedidos.", ToastLength.Short);
                 }
             }
         }
@@ -40,7 +52,14 @@ namespace ActividadesSemestre.Droid
                 else
                     Toast.MakeText(this, "Permisos de ubicación denegados.", ToastLength.Short);
             }
-            else{
+            else if (requestCode == 1){
+                if ((grantResults.Length == 1) && (grantResults[0] == (int)Permission.Granted))
+                    Toast.MakeText(this, "Permisos de contactos concedidos.", ToastLength.Short);
+                else
+                    Toast.MakeText(this, "Permisos de contactos denegados.", ToastLength.Short);
+            }
+            else
+            {
                 base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             }
         }

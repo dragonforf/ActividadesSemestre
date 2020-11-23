@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ActividadesSemestre.Views.DetalleContactoPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Padding="30,10,30,0">
+                <Label Text="Nombre Contacto" />
+                <Label Text="{Binding Contacto.NombreContacto}" />
+            </StackLayout>
+
+            <StackLayout Padding="30,10,30,0">
+                <Label Text="Número de contacto" />
+                <Label Text="{Binding Contacto.NumeroContacto}" />
+            </StackLayout>
+
+            <StackLayout Padding="30,10,30,0">
+                <Label Text="Email" />
+                <Entry Text="{Binding Contacto.Email}" />
+            </StackLayout>
+
+            <StackLayout Padding="30,10,30,0">
+                <Label Text="Asunto" />
+                <Entry Text="{Binding Asunto}" />
+            </StackLayout>
+            <StackLayout Padding="30,10,30,0">
+                <Label Text="Mensaje" />
+                <Editor Text="{Binding Mensaje}"  AutoSize="TextChanges" />
+            </StackLayout>
+            <Button Text="Enviar Correo" Command="{Binding EnviarCorreo}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

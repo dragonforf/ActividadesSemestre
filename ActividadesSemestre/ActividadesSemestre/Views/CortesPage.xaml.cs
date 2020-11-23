@@ -2,9 +2,11 @@
 using ActividadesSemestre.ViewModels;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Plugin.ContactService.Shared;
 using System;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
 namespace ActividadesSemestre.Views
@@ -68,6 +70,13 @@ namespace ActividadesSemestre.Views
             await Navigation.PushAsync(new ImagenPerfilPage());
         }
 
+        async public void VerDirectorio(object sender, EventArgs e){
+            var contacts = await Plugin.ContactService.CrossContactService.Current.GetContactListAsync();
+            var contacts1 = new ObservableCollection<Contact>(contacts);
+            var contactos = new ObservableCollection<Contacto>();
+            contacts1.ForEach(x => contactos.Add(new Contacto { NombreContacto = x.Name, NumeroContacto = x.Number, Email = x.Email }));
+            await Application.Current.MainPage.Navigation.PushAsync(new DirectorioPage(new DirectorioViewModel{ Contactos=contactos }));
+        }
         async public void CerrarSesion(object sender, EventArgs e){
             App.UsuarioAutenticadoId = 0;
             await Navigation.PopAsync();
