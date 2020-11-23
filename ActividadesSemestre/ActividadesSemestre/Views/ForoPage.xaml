@@ -21,8 +21,8 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="10,10">
-                            <Frame>
-                                <Label>
+                            <Frame BackgroundColor="DarkGray">
+                                <Label TextColor="White">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <FormattedString.Spans>
