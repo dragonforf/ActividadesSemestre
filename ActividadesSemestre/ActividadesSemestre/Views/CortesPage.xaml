@@ -4,7 +4,7 @@
              xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="ActividadesSemestre.Views.CortesPage">
     <ContentPage.ToolbarItems>
-        <!--<ToolbarItem Text="Imagen de perfil" Order="Secondary" Clicked="VerImagenPerfil" />-->
+        <ToolbarItem Text="Imagen de perfil" Order="Secondary" Clicked="VerImagenPerfil" />
         <ToolbarItem Text="Foros" Order="Secondary" Clicked="VerForos" />
         <!--<ToolbarItem Text="Directorio" Order="Secondary" Clicked="VerDirectorio" />-->
         <ToolbarItem Text="Cerrar sesión" Order="Secondary" Clicked="CerrarSesion" />

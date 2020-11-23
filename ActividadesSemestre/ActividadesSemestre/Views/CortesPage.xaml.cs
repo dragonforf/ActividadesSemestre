@@ -64,6 +64,10 @@ namespace ActividadesSemestre.Views
             await Navigation.PushAsync(new ForosPage(new ForosViewModel()));
         }
 
+        async public void VerImagenPerfil(object sender, EventArgs e){
+            await Navigation.PushAsync(new ImagenPerfilPage());
+        }
+
         async public void CerrarSesion(object sender, EventArgs e){
             App.UsuarioAutenticadoId = 0;
             await Navigation.PopAsync();
