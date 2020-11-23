@@ -7,7 +7,7 @@
     </ContentPage.ToolbarItems>
     <StackLayout>
         <Frame BackgroundColor="#AA2222" Padding="24" CornerRadius="0">
-            <Label Text="¡Bienvienido!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+            <Label Text="¡Bienvenido!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
         <StackLayout Padding="30,10,30,10">
             <Entry x:Name="Usuario" Placeholder="Usuario" />

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ActividadesSemestre.Views.ForosPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="NuevoForo" Order="Secondary" Command="{Binding NuevoForo}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <CollectionView Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="3"
+                        ItemsSource="{Binding Foros}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding ForoSeleccionado}"
+                        SelectionChangedCommand="{Binding AbrirMensajesForo}">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10,10">
+                        <Frame BackgroundColor="DarkGray">
+                            <Label TextColor="White" Text="{Binding NombreForo}" VerticalTextAlignment="Center" />
+                        </Frame>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+    </ContentPage.Content>
+</ContentPage>

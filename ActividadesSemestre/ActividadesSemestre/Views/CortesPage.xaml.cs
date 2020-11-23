@@ -60,6 +60,10 @@ namespace ActividadesSemestre.Views
             }));
         }
 
+        async public void VerForos(object sender, EventArgs e){
+            await Navigation.PushAsync(new ForosPage(new ForosViewModel()));
+        }
+
         async public void CerrarSesion(object sender, EventArgs e){
             App.UsuarioAutenticadoId = 0;
             await Navigation.PopAsync();
